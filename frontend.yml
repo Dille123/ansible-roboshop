@@ -1,5 +1,5 @@
 - name: Configure Frontend Web Server
-  hosts: all
+  hosts: frontend
   become: yes
   tasks:
     - name: remove html directory
