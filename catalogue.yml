@@ -1,3 +1,4 @@
+---
 - name: configure catalogue component
   hosts: catalogue
   become: yes
@@ -30,8 +31,6 @@
       url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
       dest: /tmp/catalogue.zip
 
-  # this module thinks file exist on ansible control server, needs to extract on to remote machine
-  # remote_src: yes means files already exist in catalogue server
   - name: extract catalogue code
     ansible.builtin.unarchive:
       src: /tmp/catalogue.zip
@@ -77,4 +76,4 @@
 
   - name: load products
     ansible.builtin.shell: mongosh --host mongodb.nagavarapu.online < /app/db/master-data.js
-    when: catalogue_output.stdout | int < 0 #If "1" means data exists, and "0" means no data.
+    when: catalogue_output.stdout | int < 0 
