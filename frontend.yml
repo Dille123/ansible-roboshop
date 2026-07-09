@@ -15,7 +15,7 @@
       state: present
 
   - name: start and enable nginx
-    ansible.builtin.service:
+    ansible.builtin.service: dnf module enable nginx:1.24 -y
       name: nginx
       state: started
       enabled: yes
