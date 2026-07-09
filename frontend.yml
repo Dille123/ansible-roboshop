@@ -1,25 +1,3 @@
----
-- name: configure frontend component
-  hosts: frontend
-  become: yes
-  tasks:
-  - name: disable default nginx
-    ansible.builtin.command: dnf module disable nginx -y
-
-
-  - name: install nginx
-    ansible.builtin.dnf:
-      name: nginx
-      state: present
-
-  - name: start and enable nginx
-    ansible.builtin.service:
-      name: nginx
-      state: started
-      enabled: yes
-
-  - name: enable nginx
-    ansible.builtin.command: dnf module enable nginx:1.24 -y
 
   - name: remove html directory
     ansible.builtin.file:
