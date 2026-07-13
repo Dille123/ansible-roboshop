@@ -1,6 +1,6 @@
 - name: configure cart component
   hosts: cart
-  become: yes
+  become: true
   tasks:
   - name: disable default nodejs
     ansible.builtin.command: dnf module disable nodejs -y
@@ -29,7 +29,7 @@
     ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip 
       dest: /tmp/cart.zip
-      
+
   - name: extract cart code
     ansible.builtin.unarchive:
       src: /tmp/cart.zip
